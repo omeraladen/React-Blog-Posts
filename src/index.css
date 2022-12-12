@@ -84,7 +84,11 @@ body {
   border-radius: 0.25rem;
   outline: none;
 }
-
+label{
+  position: relative;
+  right: 13rem;
+  color: #333;
+}
 .searchForm label {
   position: absolute;
   left: -99999px;
