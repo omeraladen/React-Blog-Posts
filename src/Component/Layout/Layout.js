@@ -5,11 +5,11 @@ import Nav from "./Nav"
 
 
 
-const Layout = () => {
+const Layout = ({ search , setSearch }) => {
   return (
     <div className="App">
-        <Header title='React Js Blog'/>
-        <Nav/>
+        <Header title=' Blog'/>
+        <Nav setSearch={setSearch} search={search}/>
         <Outlet/>
         <Footer/>
     </div>

@@ -88,7 +88,9 @@ label{
   position: relative;
   right: 13rem;
   color: #333;
+
 }
+
 .searchForm label {
   position: absolute;
   left: -99999px;
@@ -243,13 +245,14 @@ label{
   .Nav ul {
     text-align: right;
   }
-
+  
   .Nav li:hover, 
   .Nav li:focus, 
   .Nav li:hover a, 
   .Nav li:focus a  {
     background-color: #eee;
     color: #333;
+    
   }
 
   .searchForm {
@@ -265,11 +268,21 @@ label{
     height: 300px;
   }
 }
+.Header h1{
 
+  font-size: 1.3rem;
+}
+.Header a{
+  display: flex;
+  text-decoration: none;
+  color: #333;
+}
 @media only screen and (min-width: 992px) {
 
   .Header svg {
     font-size: 3rem;
   }
+
+  
 
 }
