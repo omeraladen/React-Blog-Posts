@@ -263,7 +263,9 @@ label{
   .searchForm input[type="text"] {
     margin-left: 0.5rem;
   }
-
+  .NewPost p{
+    margin: 1rem 0;
+  }
   .newPostForm textarea {
     height: 300px;
   }

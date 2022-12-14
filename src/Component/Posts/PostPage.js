@@ -1,6 +1,12 @@
 import { useParams, Link } from "react-router-dom"
 
 const PostPage = ({posts , handleDelete}) => {
+  
+  const StyleEditBtn = {
+    marginRight:'.5rem' ,
+    backgroundColor: 'gray',
+  }
+  
   const {id} = useParams()
   const post = posts.find(post => (post.id).toString() === id);
   return (
@@ -12,6 +18,10 @@ const PostPage = ({posts , handleDelete}) => {
             <h2>{post.title}</h2>
             <p>{post.datetime}</p>
             <p>{post.body}</p>
+            {/* linked with EditPost Component */}
+            <Link to={`/edit/${post.id}`}>
+              <button style={StyleEditBtn} >Edit Post</button>
+            </Link>
             <button
             onClick={() => handleDelete(post.id)}
             >Delete Post</button>

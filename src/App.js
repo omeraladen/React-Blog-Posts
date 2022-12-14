@@ -9,6 +9,7 @@ import format from 'date-fns/format'; // npm i date-fns -s
 import { useEffect , useState } from 'react';
 import { Route, Routes ,useNavigate } from 'react-router-dom';
 import api from './api/posts';
+import EditPost from './api/EditPost';
 
 
 function App() {
@@ -104,7 +105,7 @@ const handleEdit = async (id) => {
     
     setEditBody('');  
     setEditTitle('');
-    navigate('/')
+    navigate('/');
 
   }catch (err){
       console.log(`Error ${err.message}`);
@@ -124,20 +125,29 @@ const handleEdit = async (id) => {
         />
         
         <Route path='post'>
+
           <Route index element={<NewPost 
             handleSubmit={handleSubmit}
             postBody={postBody}
             setPostBody={setPostBody}
             postTitle={postTitle}
             setPostTitle={setPostTitle}
-          />}
+            />} />
+          
+            <Route path=':id' element={<PostPage posts={posts} 
+            handleDelete={handleDelete}/>} />
 
-          />
-          <Route path=':id' element={<PostPage posts={posts} 
-          handleDelete={handleDelete}/>}
-
-          />
         </Route>
+
+            <Route 
+              path='/edit/:id' element={<EditPost 
+                posts={posts}
+                handleEdit={handleEdit}
+                editTitle={editTitle}
+                editBody={editBody}  
+                setEditTitle={setEditTitle} 
+                setEditBody={setEditBody}
+                />} />
 
         <Route path='about' element={<About/>}/>
         <Route path='*' element={<Missing/>}/>
