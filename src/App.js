@@ -11,7 +11,7 @@ import { Route, Routes ,useNavigate } from 'react-router-dom';
 import api from './api/posts';
 import EditPost from './api/EditPost';
 import useDarkMode from './hooks/useDarkMode';
-
+import useAxiosFetch from './hooks/useAxiosFetch';
 
 function App() {
   const [posts , setPosts] = useState([]);
@@ -27,32 +27,16 @@ function App() {
   const [ editBody , setEditBody] = useState('');
   
   const navigate = useNavigate();
+
+  // Custom Hooks
   const [darkMode , toggleDarkMode ] = useDarkMode();
+  const {data, fetchError , isLoading} = useAxiosFetch('http://localhost:3500/posts');
 
-//----------------------------fetch GET posts useing axios--------------------------
+//------------------fetch data with axios with cusom Hook--------------------------
 useEffect(() => {
-  const fetchPosts = async () => {
-    try {
-      const response = await api.get('/posts');
-      setPosts(response.data);
-    } catch (err) {
-      if (err.response) {
-        // Not in the 200 response range 
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      } else {
-        console.log(`Error: ${err.message}`);
-      }
-    }
-  }
-
-  fetchPosts();
-}, [])
-
-
+  setPosts(data);
+}, [data])
 //----------------------------Searcg Results--------------------------
-
 useEffect(() => {
   const filteredResults = posts.filter((post) =>
     ((post.body).toLowerCase()).includes(search.toLowerCase())
@@ -93,9 +77,7 @@ useEffect(() => {
 
     }
   }
-
 //-------------------------------Edit -> Update with axios--------------------------
-
 const handleEdit = async (id) => {
   const datetime = format(new Date(), 'MMMM dd, yyyy pp');
   const updatedPost = {id , title: editTitle, datetime, body: editBody};
@@ -114,7 +96,6 @@ const handleEdit = async (id) => {
     }
 }
 //------------------------------------------------------------------
-
   return (
   <div >
      
@@ -127,9 +108,11 @@ const handleEdit = async (id) => {
       
       />}>
 
-        <Route index element={<Home  
-        darkMode={darkMode}
-        posts={searchResults} />} 
+        <Route index element={<Home 
+         fetchError={fetchError}
+         isLoading={isLoading}
+         darkMode={darkMode}
+         posts={searchResults} />} 
         />
         
         <Route path='post'>
@@ -142,8 +125,10 @@ const handleEdit = async (id) => {
             setPostTitle={setPostTitle}
             />} />
           
-            <Route path=':id' element={<PostPage darkMode={darkMode} posts={posts} 
-            handleDelete={handleDelete}/>} />
+            <Route path=':id' element={<PostPage 
+              darkMode={darkMode} 
+              posts={posts} 
+              handleDelete={handleDelete}/>} />
 
         </Route>
 

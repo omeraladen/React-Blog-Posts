@@ -28,11 +28,11 @@ const Header = ({ title ,toggleDarkMode , darkMode }) => {
       <button onClick={() => toggleDarkMode()} style={toggleBtn}>
         { darkMode ?   
         <BsLightbulb style={{
-          width:'2rem'
+          width:'1.5rem'
           }}/> : 
         
         <MdDarkMode style={{
-          width:'2rem'
+          width:'1.6rem'
           }}/>}
       </button>
     </div>
