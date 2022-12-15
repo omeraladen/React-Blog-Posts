@@ -5,10 +5,10 @@ import Nav from "./Nav"
 
 
 
-const Layout = ({ search , setSearch }) => {
+const Layout = ({ search , setSearch,toggleDarkMode ,darkMode }) => {
   return (
     <div className="App">
-        <Header title=' Blog'/>
+        <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} title=' Blog'/>
         <Nav setSearch={setSearch} search={search}/>
         <Outlet/>
         <Footer/>

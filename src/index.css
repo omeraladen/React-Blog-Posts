@@ -18,8 +18,11 @@ body {
   display: flex;
   background-color: #efefef;
 }
-
+.dark-mode{
+  background: rgb(40, 40, 40);
+}
 #root {
+
   flex-grow: 1;
   display: flex;
   justify-content: center;
@@ -36,6 +39,7 @@ body {
   align-items: center;
   border: 1px solid #333;
   box-shadow: 0px 0px 15px gray;
+  
 }
 
 .Header, .Footer {
@@ -147,6 +151,7 @@ label{
 
 .Home .post a {
   text-decoration: none;
+  
 }
 
 .Home .post a, 

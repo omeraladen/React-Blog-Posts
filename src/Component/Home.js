@@ -1,9 +1,16 @@
 import React from 'react'
 import Feed from './Feed'
 
-const Home = ({posts}) => {
+const Home = ({posts ,darkMode}) => {
+  
   return (
-    <main className="Home">
+    <main  className="Home" 
+    style={darkMode ? { 
+      backgroundColor: "gray",
+      color:'#fff'
+    } : null}
+    
+    >
         {posts.length ? (
             <Feed posts={posts} />
         ) : (
@@ -15,4 +22,4 @@ const Home = ({posts}) => {
   )
 }
 
-export default Home
+export default Home;

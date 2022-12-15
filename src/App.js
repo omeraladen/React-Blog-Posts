@@ -1,4 +1,4 @@
-
+import './app.css'
 import Layout from './Component/Layout/Layout';
 import Home from './Component/Home';
 import NewPost from './Component/Posts/NewPost';
@@ -10,6 +10,7 @@ import { useEffect , useState } from 'react';
 import { Route, Routes ,useNavigate } from 'react-router-dom';
 import api from './api/posts';
 import EditPost from './api/EditPost';
+import useDarkMode from './hooks/useDarkMode';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
   const [ editBody , setEditBody] = useState('');
   
   const navigate = useNavigate();
+  const [darkMode , toggleDarkMode ] = useDarkMode();
 
 //----------------------------fetch GET posts useing axios--------------------------
 useEffect(() => {
@@ -114,14 +116,20 @@ const handleEdit = async (id) => {
 //------------------------------------------------------------------
 
   return (
-    <Routes>
+  <div >
+     
+     <Routes>
       <Route path="/" element={<Layout 
+      darkMode={darkMode}
+      toggleDarkMode={toggleDarkMode}
       search={search}
       setSearch={setSearch}
       
       />}>
 
-        <Route index element={<Home posts={searchResults} />} 
+        <Route index element={<Home  
+        darkMode={darkMode}
+        posts={searchResults} />} 
         />
         
         <Route path='post'>
@@ -134,7 +142,7 @@ const handleEdit = async (id) => {
             setPostTitle={setPostTitle}
             />} />
           
-            <Route path=':id' element={<PostPage posts={posts} 
+            <Route path=':id' element={<PostPage darkMode={darkMode} posts={posts} 
             handleDelete={handleDelete}/>} />
 
         </Route>
@@ -153,6 +161,8 @@ const handleEdit = async (id) => {
         <Route path='*' element={<Missing/>}/>
       </Route>
     </Routes>
+
+  </div>
   );
 }
 

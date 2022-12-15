@@ -1,16 +1,20 @@
 import { useParams, Link } from "react-router-dom"
 
-const PostPage = ({posts , handleDelete}) => {
+const PostPage = ({posts , handleDelete , darkMode}) => {
   
   const StyleEditBtn = {
     marginRight:'.5rem' ,
-    backgroundColor: 'gray',
+    backgroundColor: 'rgb(19, 79, 114)',
   }
   
   const {id} = useParams()
   const post = posts.find(post => (post.id).toString() === id);
   return (
-    <main className="PostPage">
+    <main className="PostPage"  style={darkMode ? { 
+      backgroundColor: "gray",
+      color:'#fff'
+    } : null}
+    >
        <article className="post">
 
         {post && 
