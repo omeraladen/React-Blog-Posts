@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-const EditPost = ({
-    posts, handleEdit , editTitle , editBody , setEditTitle, setEditBody
-}) => {
+import DataContext from "../context/DataContext";
+const EditPost = () => {
+  const {posts, handleEdit , editTitle , editBody , setEditTitle, setEditBody} = useContext(DataContext);
     const {id} = useParams();
     const post = posts.find(post => (post.id).toString() === id);
 

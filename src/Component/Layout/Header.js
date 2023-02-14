@@ -2,9 +2,11 @@ import Logo from '../Layout/blog.png';
 import { Link } from 'react-router-dom';
 import {MdDarkMode} from 'react-icons/md';
 import {  BsLightbulb} from 'react-icons/bs';
+import { useContext } from 'react';
+import DataContext from '../../context/DataContext';
 
-
-const Header = ({ title ,toggleDarkMode , darkMode }) => {
+const Header = ({ title  }) => {
+  const {toggleDarkMode , darkMode} = useContext(DataContext);
   const logoStyle = {
     width:'40px',
     

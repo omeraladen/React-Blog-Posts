@@ -1,6 +1,9 @@
+import { useContext } from "react"
 import { useParams, Link } from "react-router-dom"
+import DataContext from "../../context/DataContext"
 
-const PostPage = ({posts , handleDelete , darkMode}) => {
+const PostPage = () => {
+  const { handleDelete , posts , darkMode } = useContext(DataContext);
   
   const StyleEditBtn = {
     marginRight:'.5rem' ,
