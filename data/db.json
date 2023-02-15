@@ -20,27 +20,15 @@
     },
     {
       "id": 4,
-      "title": "Testing a 4th post",
-      "datetime": "July 18, 2022 11:47:38 AM",
+      "title": "Testing a 6th post",
+      "datetime": "February 14, 2023 10:27:51 PM",
       "body": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis, corrupti. Sapiente atque quos illum quibusdam aut voluptate. Id porro exercitationem quas, laboriosam adipisci, deserunt voluptates asperiores impedit non modi repellendus?"
     },
     {
       "id": 5,
-      "title": "first",
-      "datetime": "December 14, 2022 4:51:27 AM",
+      "title": "second upadate!",
+      "datetime": "February 14, 2023 10:26:25 PM",
       "body": "After Moding"
-    },
-    {
-      "id": 6,
-      "title": "Omer-Dev",
-      "datetime": "February 14, 2023 4:08:17 AM",
-      "body": "Welcome you back Omer ..."
-    },
-    {
-      "id": 7,
-      "title": "post 99",
-      "datetime": "February 14, 2023 4:38:15 AM",
-      "body": "checking if the post well shown \n\n "
     }
   ]
 }

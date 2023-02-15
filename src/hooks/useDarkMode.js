@@ -16,7 +16,7 @@ export default function useDarkMode ()  {
       }
     },[darkMode])
 
-    const toggleDarkMode = () => {
+     const toggleDarkMode = () => {
       setDarkMode(!darkMode);
     }
 

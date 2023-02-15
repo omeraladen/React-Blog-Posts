@@ -1,18 +1,50 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect,useState } from "react";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import DataContext from "../context/DataContext";
-const EditPost = () => {
-  const {posts, handleEdit , editTitle , editBody , setEditTitle, setEditBody} = useContext(DataContext);
-    const {id} = useParams();
-    const post = posts.find(post => (post.id).toString() === id);
+import api from '../api/posts';
+import format from "date-fns/format";
 
+
+const EditPost = () => {
+  const {posts ,setPosts} = useContext(DataContext);
+    const {id} = useParams();
+    
+
+    
+    // use to update post with axios
+    const [ editTitle , setEditTitle] = useState(''); 
+    const [ editBody , setEditBody] = useState('');
+    
+    const navigate = useNavigate();
+  //-------------------------------EditPost -> Update with axios--------------------------
+  const handleEdit = async (id) => {
+    const datetime = format(new Date(), 'MMMM dd, yyyy pp');
+    const updatedPost = {id , title: editTitle, datetime, body: editBody};
+  
+    try{
+      const response = await api.put(`/posts/${id}`,updatedPost);
+      setPosts(posts.map(
+        post => post.id === id ? {...response.data}: post));
+      
+      setEditBody('');  
+      setEditTitle('');
+      navigate('/');
+  
+    }catch (err){
+        console.log(`Error ${err.message}`);
+      }
+  }
+  //--------------------------------------------------------------------
+    //------------------------------------------------------------------
+    const post = posts.find(post => (post.id).toString() === id);
     useEffect(() => {
-     if (post){
-      setEditTitle(post.title);
-      setEditBody(post.body);
-     }
+      if (post){
+        setEditTitle(post.title);
+        setEditBody(post.body);
+      }
     }, [post , setEditBody, setEditTitle])
+    //------------------------------------------------------------------
   return (
     <main className='NewPost'>
       {editTitle && 
